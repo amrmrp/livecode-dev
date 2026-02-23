@@ -1,0 +1,97 @@
+---
+const { title, description } = Astro.props;
+---
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <title>{title} | امیررضا مقدم پور</title>
+  <style is:global>
+    :root {
+      --bg: #ffffff;
+      --text: #1e293b;
+      --primary: #2563eb;
+      --card-bg: #f9fafb;
+      --border: #e2e8f0;
+      --muted: #64748b;
+    }
+    .dark {
+      --bg: #0f172a;
+      --text: #f8fafc;
+      --primary: #3b82f6;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --muted: #94a3b8;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+    }
+    .container { max-width: 850px; margin: 0 auto; padding: 0 1.5rem; }
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 2rem 0; margin-bottom: 3rem; border-bottom: 1px solid var(--border);
+    }
+    .theme-toggle {
+      background: var(--card-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+    .theme-toggle:hover { background-color: var(--border); }
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.2s;
+    }
+    .glass-card:hover { transform: translateY(-5px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div style="font-size: 1.4rem; font-weight: 800;">
+        Amirreza <span style="color: var(--primary);">Moghadampour</span>
+      </div>
+      <div style="display: flex; gap: 1.5rem; align-items: center;">
+        <a href="/">وبلاگ</a>
+        <button id="themeToggle" class="theme-toggle">🌓 تغییر حالت</button>
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer style="text-align:center; padding:4rem 0; color:var(--muted); border-top:1px solid var(--border);">
+      © 2026 امیررضا مقدم پور - متخصص توسعه نرم‌افزار و SEO
+    </footer>
+  </div>
+
+  <!-- اسکریپت باید به صورت Client اجرا شود -->
+  <script type="module">
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem("theme") || "light";
+
+    if (savedTheme === "dark") {
+      root.classList.add("dark");
+    }
+
+    const toggleBtn = document.getElementById("themeToggle");
+    toggleBtn.addEventListener("click", () => {
+      root.classList.toggle("dark");
+      const currentTheme = root.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", currentTheme);
+    });
+  </script>
+</body>
+</html>

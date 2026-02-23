@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+    (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+---
+
+<BaseLayout title="تکنیکال لید و متخصص سئو" description="وبلاگ تخصصی امیررضا مقدم پور">
+    <header style="padding: 4rem 0;">
+        <h1 style="font-size: 3rem; line-height: 1.2; margin-bottom: 1.5rem;">
+            ساخت سیستم‌های <span style="color: var(--primary);">مقیاس‌پذیر</span> و بهینه برای موتورهای جستجو
+        </h1>
+        <p style="font-size: 1.25rem; color: var(--muted); max-width: 700px;">
+            من امیررضا مقدم پور هستم. تخصص من مدیریت تیم‌های فنی و توسعه سیستم‌های High-Load با تمرکز بر عملکرد (Performance) و اصول SEO است.
+        </p>
+    </header>
+
+    <section>
+        <h2 style="margin-bottom: 2rem;">مقالات اخیر</h2>
+        <div style="display: grid; gap: 1.5rem;">
+            {posts.map(post => (
+                <article class="glass-card">
+                    <small style="color: var(--primary);">{post.data.publishDate}</small>
+                    <h3 style="margin: 0.5rem 0;"><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+                    <p style="color: var(--muted); margin-bottom: 1.5rem;">{post.data.description}</p>
+                    <a href={`/blog/${post.slug}`} style="font-weight: 600;">ادامه مطلب ←</a>
+                </article>
+            ))}
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+    const blogEntries = await getCollection('blog');
+    return blogEntries.map(entry => ({
+        params: { slug: entry.slug }, props: { entry },
+    }));
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description}>
+    <article class="glass-card" style="margin-top: 2rem;">
+        <header style="margin-bottom: 3rem; text-align: center;">
+            <h1 style="font-size: 2.5rem;">{entry.data.title}</h1>
+            <div style="color: var(--muted);">نویسنده: امیررضا مقدم پور | {entry.data.publishDate}</div>
+        </header>
+        <div class="prose">
+            <Content />
+        </div>
+    </article>
+</BaseLayout>
+
+<style is:inline>
+    .prose h2 { color: var(--primary); margin-top: 2.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+    .prose p { font-size: 1.15rem; margin-bottom: 1.5rem; text-align: justify; }
+    .prose code { background: var(--border); padding: 0.2rem 0.5rem; border-radius: 5px; font-family: 'Consolas', monospace; }
+</style>
