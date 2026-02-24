@@ -23,10 +23,10 @@ jobs:
       - name: Build Astro
         run: npm run build
 
-      # اگر از Cloudflare Pages استفاده می‌کنی، این بخش را اضافه کن:
-      - name: Publish to Cloudflare Pages
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=your-project-name
+          command: pages deploy dist --project-name=REAL_PROJECT_NAME
+
