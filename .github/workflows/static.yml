@@ -1,35 +1,36 @@
-name: Deploy Astro Site
-
+name: Deploy Astro to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # یا master بسته به نام برنچ اصلیت
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm' # کش کردن پکیج‌ها برای سرعت در بیلدهای بعدی
+          cache: npm
 
-      - name: Install dependencies
-        run: npm ci # استفاده از ci برای محیط CI الزامی است (پایداری ورژن‌ها)
+      - run: npm ci
+      - run: npm run build
 
-      - name: Build Astro
-        run: npm run build
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      - uses: actions/upload-pages-artifact@v3
         with:
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=REAL_PROJECT_NAME
+          path: dist
 
-
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/deploy-pages@v4
