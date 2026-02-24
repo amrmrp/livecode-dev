@@ -1,0 +1,42 @@
+/* معرفی فونت با استراتژی swap برای جلوگیری از خطای CLS در سئو */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap; 
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* اعمال فونت به کل بدنه سایت و فایل‌های Markdown رندر شده */
+body {
+  font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
+  direction: rtl;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* استایل‌دهی اختصاصی برای ساختار تیترها و لیست‌های Markdown */
+h1, h2, h3, h4 {
+  font-weight: 700;
+  color: #111;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  padding-inline-start: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+blockquote {
+  border-inline-start: 4px solid #3b82f6;
+  padding-inline-start: 1rem;
+  color: #555;
+  background-color: #f9fafb;
+}

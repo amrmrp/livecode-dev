@@ -7,7 +7,11 @@ const { title, description } = Astro.props;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content={description} />
   <title>{title} | امیررضا مقدم پور</title>
+  
   <style is:global>
+    /* ایمپورت فونت وزیرمتن با استراتژی swap برای جلوگیری از خطای CLS در Core Web Vitals */
+    @import url('https://cdn.jsdelivr.net/npm/vazirmatn@33.0.3/Vazirmatn-font-face.css');
+
     :root {
       --bg: #ffffff;
       --text: #1e293b;
@@ -27,15 +31,20 @@ const { title, description } = Astro.props;
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: "Segoe UI", Tahoma, sans-serif;
+      /* تنظیم فونت استاندارد */
+      font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
       transition: background-color 0.3s, color 0.3s;
       margin: 0;
+      line-height: 1.8;
     }
+    
     .container { max-width: 850px; margin: 0 auto; padding: 0 1.5rem; }
+    
     nav {
       display: flex; justify-content: space-between; align-items: center;
       padding: 2rem 0; margin-bottom: 3rem; border-bottom: 1px solid var(--border);
     }
+    
     .theme-toggle {
       background: var(--card-bg);
       color: var(--text);
@@ -45,18 +54,68 @@ const { title, description } = Astro.props;
       cursor: pointer;
       transition: 0.3s;
       font-weight: bold;
+      font-family: inherit;
     }
     .theme-toggle:hover { background-color: var(--border); }
-    .glass-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      transition: transform 0.2s;
+    
+    /* استایل‌های حیاتی برای رندر درست خروجی Markdown */
+    h1, h2, h3, h4 { color: var(--text); font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; }
+    p { margin-bottom: 1.5rem; }
+    a { color: var(--primary); text-decoration: none; transition: 0.2s; }
+    a:hover { text-decoration: underline; }
+    ul, ol { padding-inline-start: 1.5rem; margin-bottom: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    blockquote {
+      border-inline-start: 4px solid var(--primary);
+      padding: 1rem;
+      color: var(--text);
+      background-color: var(--card-bg);
+      margin: 1.5rem 0;
+      border-radius: 8px;
     }
-    .glass-card:hover { transform: translateY(-5px); }
+    code {
+      background-color: var(--card-bg);
+      color: var(--primary);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9em;
+      border: 1px solid var(--border);
+      direction: ltr;
+    }
+    pre {
+      background-color: var(--card-bg) !important;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      direction: ltr;
+      text-align: left;
+      margin: 1.5rem 0;
+    }
+    pre code {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      color: inherit;
+    }
   </style>
+
+  <!-- اجرای اسکریپت تم در هدر برای جلوگیری از Flash of Unstyled Content (FOUC) -->
+  <script is:inline>
+    const theme = (() => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
+      }
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
+      return 'light';
+    })();
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
 </head>
 <body>
   <div class="container">
@@ -70,26 +129,21 @@ const { title, description } = Astro.props;
       </div>
     </nav>
 
-    <slot />
+    <main>
+      <slot />
+    </main>
 
-    <footer style="text-align:center; padding:4rem 0; color:var(--muted); border-top:1px solid var(--border);">
+    <footer style="text-align:center; padding:4rem 0; color:var(--muted); border-top:1px solid var(--border); margin-top:4rem;">
       © 2026 امیررضا مقدم پور - متخصص توسعه نرم‌افزار و SEO
     </footer>
   </div>
 
-  <!-- اسکریپت باید به صورت Client اجرا شود -->
-  <script type="module">
-    const root = document.documentElement;
-    const savedTheme = localStorage.getItem("theme") || "light";
-
-    if (savedTheme === "dark") {
-      root.classList.add("dark");
-    }
-
+  <!-- لاجیک دکمه تغییر تم -->
+  <script>
     const toggleBtn = document.getElementById("themeToggle");
     toggleBtn.addEventListener("click", () => {
-      root.classList.toggle("dark");
-      const currentTheme = root.classList.contains("dark") ? "dark" : "light";
+      document.documentElement.classList.toggle("dark");
+      const currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "light";
       localStorage.setItem("theme", currentTheme);
     });
   </script>
