@@ -1,5 +1,6 @@
 name: Deploy Astro Site
 
+
 on:
   push:
     branches: [ main ] # یا master بسته به نام برنچ اصلیت
