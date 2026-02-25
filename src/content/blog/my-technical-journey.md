@@ -3,6 +3,7 @@ title: "استراتژی‌های هندل کردن ۱۰۰ میلیون تراک
 description: "تجربه واقعی طراحی سیستم مالی مقیاس‌پذیر با Go و معماری Event‑Driven برای پردازش ۱۰۰ میلیون تراکنش روزانه و کاهش ۵۰٪ فشار دیتابیس."
 publishDate: "2026-02-23"
 author: "امیررضا مقدم پور"
+category: "technical"
 tags: ["System Design", "Go", "Event-Driven Architecture", "High Scale", "SEO"]
 ---
 

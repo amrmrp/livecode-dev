@@ -99,6 +99,41 @@ const { title, description } = Astro.props;
       padding: 0;
       color: inherit;
     }
+
+    /* ✅ FIX RTL MARKDOWN TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      direction: rtl;
+      text-align: right;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    th {
+      background-color: var(--border);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ✅ اگر داخل جدول کد یا عدد انگلیسی بود */
+    td code {
+      direction: ltr;
+      unicode-bidi: isolate;
+    }
+
   </style>
 
   <!-- اجرای اسکریپت تم در هدر برای جلوگیری از Flash of Unstyled Content (FOUC) -->
@@ -121,10 +156,12 @@ const { title, description } = Astro.props;
   <div class="container">
     <nav>
       <div style="font-size: 1.4rem; font-weight: 800;">
-        Amirreza <span style="color: var(--primary);">Moghadampour</span>
+        Amirreza <span style="color: var(--primary);">Moghadampoor</span>
       </div>
       <div style="display: flex; gap: 1.5rem; align-items: center;">
         <a href="/">وبلاگ</a>
+        <a href="http://am-dev.ir">رزومه</a>
+
         <button id="themeToggle" class="theme-toggle">🌓 تغییر حالت</button>
       </div>
     </nav>

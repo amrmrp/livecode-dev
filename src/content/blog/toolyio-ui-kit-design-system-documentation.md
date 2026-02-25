@@ -1,8 +1,9 @@
 ---
 title: "Website UI Kit v1 | Design System Documentation"
 description: "مستندات رسمی Design System و UI Kit برند Website برای وب‌سایت‌های SaaS، توسعه نرم‌افزار و SEO با پشتیبانی Light/Dark Mode."
-publishDate: "2026-02-23"
+publishDate: "2026-02-25"
 author: "امیررضا مقدم پور"
+category: "web design"
 tags:
   - "Design System"
   - "UI Kit"
@@ -24,7 +25,7 @@ tags:
 ## 🧩 1. Foundational Design Principles
 
 | اصل | توضیح |
-||--|
+| --- | --- |
 | **Simplicity over Drama** | تمرکز روی قابلیت استفاده — نه فانتزی. |
 | **Consistency builds trust** | ساختار رنگ، تایپوگرافی و فاصله ثابت در همه‌جا. |
 | **SEO Semantic Structure** | هر المان معنا دارد؛ هر متن تگ درست خودش را. |
@@ -35,9 +36,9 @@ tags:
 ## 🎨 2. Color System — Light / Dark
 
 | Role | Light Mode | Dark Mode | توضیح |
-||-||--|
+| --- | --- | --- | --- | 
 | **Primary** | `#0F172A` | `#F8FAFC` | تیترها، اجزای برند |
-| **Accent** | `#2563EB` | `#3B82F6` | CTAها، لینک‌ها |
+| **Accent**  | `#2563EB` | `#3B82F6` | CTAها، لینک‌ها |
 | **Secondary** | `#64748B` | `#CBD5E1` | متن‌های توضیحی و غیرفعال |
 | **Surface** | `#FFFFFF` | `#1E293B` | پس‌زمینه کارت‌ها |
 | **Border** | `#E2E8F0` | `#334155` | خطوط جداکننده |
@@ -52,7 +53,7 @@ tags:
 ## 🔤 3. Typography System
 
 | Type | Font | Size | Weight | کارکرد |
-||||||
+| --- | --- | --- | --- | --- |
 | **H1** | Vazirmatn Bold | 44px | 700 | عنوان اصلی صفحه |
 | **H2** | Vazirmatn SemiBold | 32px | 600 | تیتر بخش‌ها |
 | **H3** | Vazirmatn Medium | 24px | 500 | کارت‌ها، ساب‌سکشن‌ها |
@@ -68,7 +69,7 @@ tags:
 ## 📐 4. Layout System
 
 | نوع | مقدار | توضیح |
-||-|--|
+| --- | --- | --- |
 | **Container Max‑Width** | 1280px | محدوده محتوای صفحه |
 | **Grid Columns** | 12 | چینش responsive استاندارد |
 | **Gutter** | 24px | فاصله بین ستون‌ها |
@@ -81,7 +82,7 @@ tags:
 ## 📲 5. Responsive Breakpoints
 
 | نام | محدوده (px) | الگو |
-||-||
+| --- | --- | --- |
 | **Mobile** | ≤ 640 | عمودی، Drawer برای منو |
 | **Tablet** | ≤ 1024 | دو ستونه، Collapseها |
 | **Desktop** | ≥ 1280 | full grid layout |
@@ -95,7 +96,7 @@ tags:
 ## ⚙️ 6. Core Components (Essentials)
 
 | بخش | جزئیات |
-||-|
+| --- | --- |
 | **Header** | منو ساده + لوگو + CTA مشاوره |  
 | **Hero Section** | H1 سئو محور + متن کوتاه + دو CTA (مشاوره / ابزار) |  
 | **Services Cards** | آیکون Outline + تیتر + متن + Hover subtle |  
