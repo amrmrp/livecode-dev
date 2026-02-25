@@ -134,6 +134,40 @@ const { title, description } = Astro.props;
       unicode-bidi: isolate;
     }
 
+    pre {
+      background-color: var(--card-bg) !important;
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      direction: ltr;
+      text-align: left;
+      margin: 1.5rem 0;
+      /* این خط مهمه */
+      color: var(--text) !important;
+    }
+
+    /* Shiki dual theme fix */
+    .astro-code,
+    .astro-code span {
+      color: var(--shiki-light) !important;
+      background-color: var(--shiki-light-bg) !important;
+    }
+
+    .dark .astro-code,
+    .dark .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+    }
+
+    .astro-code {
+      padding: 1.5rem !important;
+      border-radius: 8px !important;
+      border: 1px solid var(--border) !important;
+      overflow-x: auto !important;
+      margin: 1.5rem 0 !important;
+    }
+
   </style>
 
   <!-- اجرای اسکریپت تم در هدر برای جلوگیری از Flash of Unstyled Content (FOUC) -->
