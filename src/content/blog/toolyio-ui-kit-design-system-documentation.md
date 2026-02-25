@@ -3,7 +3,7 @@ title: "Website UI Kit v1 | Design System Documentation"
 description: "مستندات رسمی Design System و UI Kit برند Website برای وب‌سایت‌های SaaS، توسعه نرم‌افزار و SEO با پشتیبانی Light/Dark Mode."
 publishDate: "2026-02-25"
 author: "امیررضا مقدم پور"
-category: "web design"
+category: "web-design"
 tags:
   - "Design System"
   - "UI Kit"

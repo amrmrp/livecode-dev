@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const categories = [...new Set(posts.map(p => p.data.category))];
+  return categories.map(category => ({
+    params: { category },
+    props: { posts: posts.filter(p => p.data.category === category) },
+  }));
+}
+
+const { category } = Astro.params;
+const { posts } = Astro.props;
+const sorted = posts.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
+---
+
+<BaseLayout title={`دسته‌بندی: ${category}`} description={`مقالات دسته ${category}`}>
+  <header style="padding: 3rem 0 1.5rem;">
+    <h1 style="margin-top: 1rem;">دسته‌بندی: <span style="color: var(--primary);">{category}</span></h1>
+    <a href="/" style="color: var(--muted); font-size: 0.9rem;">← بازگشت به وبلاگ</a>
+    <p style="color: var(--muted);">{sorted.length} مقاله</p>
+  </header>
+
+  <section>
+    <div style="display: grid; gap: 1.5rem;">
+      {sorted.map(post => (
+        <article class="glass-card">
+          <small style="color: var(--primary);">{post.data.publishDate}</small>
+          <h3 style="margin: 0.5rem 0;"><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+          <p style="color: var(--muted); margin-bottom: 1.5rem;">{post.data.description}</p>
+          <a href={`/blog/${post.slug}`} style="font-weight: 600;">ادامه مطلب ←</a>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
