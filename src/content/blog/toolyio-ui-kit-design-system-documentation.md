@@ -116,6 +116,48 @@ tags:
 4. **Blog:** آموزش → افزایش اعتماد  
 5. **CTA ثابت:** «دریافت مشاوره رایگان»  
 
+## Buttons
+
+### Primary Button
+- Height: 48px
+- Padding: 24px
+- Font: 16px Medium
+- Radius: 12px
+- Background: Accent / Gradient
+- Usage: Main CTA only
+
+### Secondary Button
+- Height: 44px
+- Padding: 20px
+- Border: 1px Border Color
+- Usage: Secondary Actions
+
+### States
+- Hover: Darker shade + shadow
+- Active: No shadow
+- Disabled: Opacity 40%
+
+### Typography Rules
+- Only one H1 per page
+- H2 for sections
+- H3 for cards
+- Body text max width: 65–75ch
+
+### Responsive Rules
+- Touch Target ≥ 44px
+- Buttons on mobile never smaller than 44px height
+- Section padding:
+  Mobile: 24px
+  Tablet: 32px
+  Desktop: 48px
+
+## Component Contracts
+- Button: no custom color allowed
+- Card: radius fixed (12px)
+- Shadow only on hover
+- Spacing only from spacing tokens
+
+
 اصول تعامل:
 - Animation بسیار subtle (fade + slide)
 - Transition 150–250ms
