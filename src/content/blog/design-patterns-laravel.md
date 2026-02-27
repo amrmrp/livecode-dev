@@ -1,7 +1,7 @@
 ---
 title: "Design Patterns در Laravel با مثال‌های واقعی"
 description: "بررسی Design Patterns پرکاربرد در Laravel همراه با مثال‌های عملی Backend"
-publishDate: 2026-02-27
+publishDate: "2026-02-27"
 author: "Amirreza"
 category: "technical"
 tags: ["Laravel", "Design Patterns", "Backend", "PHP", "Architecture"]
